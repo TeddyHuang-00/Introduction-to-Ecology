@@ -194,13 +194,13 @@ def plot(gen):
         ]
         last_frame_pca_buffer = this_frame_pca_buffer * np.array([[x_sign, y_sign]])
     fig = plt.figure(figsize=(6, 6))
-    for i, result in enumerate(pca_results):
+    for i, (result, t) in enumerate(zip(pca_results, T)):
         plt.scatter(
             x_sign * result[:, 0],
             y_sign * result[:, 1],
             color=cmap(i / (len(pca_results) - 1)),
             alpha=DENSE_ALPHA,
-            label=f"Prey {i}",
+            label=f"T{t:.01f}",
         )
     X = x_sign * np.linspace(*plt.xlim(), 10)
     Y = y_sign * np.linspace(*plt.ylim(), 10)
@@ -236,11 +236,12 @@ def plot(gen):
         sharey=True,
         gridspec_kw={"width_ratios": [len(P), 1]},
     )
-    dist_cmap = get_cmap("coolwarm")
+    dist_cmap = get_cmap("gray")
     dist_cmap.set_bad("w")
     dist_im = axs[0].imshow(
         np.ma.array(prey_dist_mat, mask=np.tri(prey_dist_mat.shape[0], k=-1)),
         cmap=dist_cmap,
+        vmax=max(np.max(prey_dist_mat), 0.5),
     )
     axs[0].set_xticks(np.arange(len(P)), labels=[f"T{t:.01f}" for p, t in zip(P, T)])
     axs[0].set_yticks(np.arange(len(P)), labels=[f"T{t:.01f}" for p, t in zip(P, T)])
@@ -248,7 +249,7 @@ def plot(gen):
     plt.setp(axs[0].get_xticklabels(), rotation=90, ha="right", rotation_mode="anchor")
     # axs[0].set_title("Distance")
 
-    pref_im = axs[1].imshow(prey_pref_vec[:, None], cmap="coolwarm", vmin=0.0, vmax=1.0)
+    pref_im = axs[1].imshow(prey_pref_vec[:, None], cmap="Reds", vmin=0.0, vmax=1.0)
     axs[1].set_xticks([])
     plt.colorbar(pref_im)
     # axs[1].set_title("Preference")
@@ -300,10 +301,10 @@ plot(GENERANTIONS)
 
 # Plot survival rates
 SURVIVAL_RATES = np.array(SURVIVAL_RATES)
-for i in range(len(P)):
+for i, t in enumerate(T):
     plt.plot(
         SURVIVAL_RATES[:, i],
-        label=f"Prey {i}",
+        label=f"T{t:.01f}",
         color=cmap(i / (len(P) - 1)),
         alpha=MEDIUM_ALPHA,
     )
@@ -312,7 +313,7 @@ plt.legend()
 plt.savefig(os.path.join(ROOT_PATH, "Survival.pdf"))
 plt.close()
 pd.DataFrame(SURVIVAL_RATES).rename(
-    columns={i: f"Prey {i}" for i in range(len(P))} | {len(P): "Predator"}
+    columns={i: f"T{t:.01f}" for i, t in enumerate(T)} | {len(P): "Predator"}
 ).to_csv(os.path.join(ROOT_PATH, "Survival.csv"))
 
 # Plot population evolution history
