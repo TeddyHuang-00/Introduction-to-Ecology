@@ -38,13 +38,6 @@ argparser.add_argument(
     type=str,
     help="Output directory",
 )
-argparser.add_argument(
-    "-O",
-    "--output",
-    default="Population.mp4",
-    type=str,
-    help="Output video file name",
-)
 
 args = argparser.parse_args()
 print(args)
@@ -59,10 +52,28 @@ commands = [
     os.path.join(args.directory, "frames", "GEN-%d.png"),
     "-loop",
     str(int(args.loop)),
-    os.path.join(args.directory, args.output),
+    os.path.join(args.directory, "Population.mp4"),
     "-y" if args.force else "",
 ]
 if subprocess.run(commands).returncode == 0:
-    print("Convertion done")
+    print("Population done")
 else:
-    print("Convertion failed")
+    print("Population failed")
+
+commands = [
+    args.path,
+    "-f",
+    "image2",
+    "-framerate",
+    str(args.framerate),
+    "-i",
+    os.path.join(args.directory, "frames", "DIST-%d.png"),
+    "-loop",
+    str(int(args.loop)),
+    os.path.join(args.directory, "Distance.mp4"),
+    "-y" if args.force else "",
+]
+if subprocess.run(commands).returncode == 0:
+    print("Distance done")
+else:
+    print("Distance failed")

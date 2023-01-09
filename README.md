@@ -51,5 +51,5 @@ options:
   ```
 - *If you have ffmpeg installed*, you can also use the post process script to compose figures into a video file
   ```
-  python3 post-process.py -R 30 -D fig -O Population.mp4
+  python3 post-process.py -R 30 -D fig
   ```

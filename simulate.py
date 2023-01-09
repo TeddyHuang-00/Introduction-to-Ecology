@@ -95,6 +95,7 @@ np.random.seed(args.seed)
 
 DENSE_ALPHA = 0.2
 MEDIUM_ALPHA = 0.5
+FRAME_DPI = 150
 
 cmap = get_cmap(args.cmap)
 
@@ -169,7 +170,7 @@ last_frame_pca_buffer = None
 
 
 def plot(gen):
-    global PREYS, PREDATOR, last_frame_pca_buffer
+    global PREYS, PREDATOR, last_frame_pca_buffer, cmap
     p = PREDATOR.mean(axis=0)
     pca = PCA(n_components=2).fit(np.vstack(PREYS))
     pca_results = [pca.transform(pop) for pop in PREYS]
@@ -219,7 +220,42 @@ def plot(gen):
     plt.xticks([])
     plt.yticks([])
     plt.tight_layout()
-    plt.savefig(os.path.join(FRAME_PATH, f"GEN-{gen}.png"))
+    plt.savefig(os.path.join(FRAME_PATH, f"GEN-{gen}.png"), dpi=FRAME_DPI)
+    plt.close()
+
+    prey_means = np.array([np.mean(p, axis=0) for p in PREYS])
+    pred_mean = np.mean(PREDATOR, axis=0)
+    prey_dist_mat = np.sqrt(
+        np.sum((prey_means[:, None, :] - prey_means[None, :, :]) ** 2, axis=-1)
+    )
+    prey_pref_vec = softmax(*(prey_means @ pred_mean))
+    fig, axs = plt.subplots(
+        figsize=(len(P) + 1, len(P)),
+        nrows=1,
+        ncols=2,
+        sharey=True,
+        gridspec_kw={"width_ratios": [len(P), 1]},
+    )
+    dist_cmap = get_cmap("coolwarm")
+    dist_cmap.set_bad("w")
+    dist_im = axs[0].imshow(
+        np.ma.array(prey_dist_mat, mask=np.tri(prey_dist_mat.shape[0], k=-1)),
+        cmap=dist_cmap,
+    )
+    axs[0].set_xticks(np.arange(len(P)), labels=[f"T{t:.01f}" for p, t in zip(P, T)])
+    axs[0].set_yticks(np.arange(len(P)), labels=[f"T{t:.01f}" for p, t in zip(P, T)])
+    plt.colorbar(dist_im)
+    plt.setp(axs[0].get_xticklabels(), rotation=90, ha="right", rotation_mode="anchor")
+    # axs[0].set_title("Distance")
+
+    pref_im = axs[1].imshow(prey_pref_vec[:, None], cmap="coolwarm", vmin=0.0, vmax=1.0)
+    axs[1].set_xticks([])
+    plt.colorbar(pref_im)
+    # axs[1].set_title("Preference")
+
+    plt.suptitle(f"Generation {gen}")
+    plt.tight_layout()
+    plt.savefig(os.path.join(FRAME_PATH, f"DIST-{gen}.png"), dpi=FRAME_DPI)
     plt.close()
 
 
@@ -262,6 +298,7 @@ PREDATOR_MEAN = PREDATOR.mean(axis=0)
 POP_HISTORY.append((*PREY_MEANS, PREDATOR_MEAN))
 plot(GENERANTIONS)
 
+# Plot survival rates
 SURVIVAL_RATES = np.array(SURVIVAL_RATES)
 for i in range(len(P)):
     plt.plot(
@@ -278,6 +315,7 @@ pd.DataFrame(SURVIVAL_RATES).rename(
     columns={i: f"Prey {i}" for i in range(len(P))} | {len(P): "Predator"}
 ).to_csv(os.path.join(ROOT_PATH, "Survival.csv"))
 
+# Plot population evolution history
 POP_HISTORY = np.array(POP_HISTORY)
 pca = PCA(n_components=2).fit(POP_HISTORY[:, :-1, :].reshape(-1, GENES))
 
