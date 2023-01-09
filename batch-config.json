@@ -1,0 +1,111 @@
+[
+  {
+    "name": "default",
+    "prey": [500, 500],
+    "toxicity": [0.9, 0.0],
+    "predator": 100,
+    "genes": 10,
+    "generations": 1000,
+    "mutation_rate": 0.05,
+    "mutation_scale": 0.05,
+    "initial_scale": 0.1,
+    "seed": 0,
+    "cmap": "rainbow"
+  },
+  {
+    "name": "H100_P500-T09_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500],
+    "toxicity": [0.9, 0.0],
+    "predator": 100,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H100_P500-T01_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500],
+    "toxicity": [0.1, 0.0],
+    "predator": 100,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H100_P500-T09_P500-T08_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500],
+    "toxicity": [0.9, 0.8],
+    "predator": 100,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H150_P500-T09_P500-T05_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500],
+    "toxicity": [0.9, 0.5, 0.0],
+    "predator": 150,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H150_P500-T09_P500-T08_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500],
+    "toxicity": [0.9, 0.8, 0.0],
+    "predator": 150,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H150_P500-T09_P500-T01_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500],
+    "toxicity": [0.9, 0.1, 0.0],
+    "predator": 150,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H200_P500-T09_P500-T06_P500-T03_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500, 500],
+    "toxicity": [0.9, 0.6, 0.3, 0.0],
+    "predator": 200,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H200_P500-T09_P500-T05_P500-T01_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500, 500],
+    "toxicity": [0.9, 0.5, 0.1, 0.0],
+    "predator": 200,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H200_P500-T09_P500-T08_P500-T05_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500, 500],
+    "toxicity": [0.9, 0.8, 0.5, 0.0],
+    "predator": 200,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H200_P500-T09_P500-T08_P500-T01_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500, 500],
+    "toxicity": [0.9, 0.8, 0.1, 0.0],
+    "predator": 200,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H200_P500-T09_P500-T08_P500-T07_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500, 500],
+    "toxicity": [0.9, 0.8, 0.7, 0.0],
+    "predator": 200,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H200_P500-T09_P500-T02_P500-T01_P500-T00_G10_N1000_R005_K005_I005_S0",
+    "prey": [500, 500, 500, 500],
+    "toxicity": [0.9, 0.2, 0.1, 0.0],
+    "predator": 200,
+    "initial_scale": 0.05,
+    "cmap": "coolwarm"
+  }
+]
