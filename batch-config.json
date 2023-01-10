@@ -1,17 +1,17 @@
 [
   {
-    "name": "H100_P500-T09_P500-T00_G10_N2000_R005_K005_I005",
+    "name": "H100_P500-T01_P500-T00_G10_N2000_R005_K005_I005",
     "prey": [500, 500],
-    "toxicity": [0.9, 0.0],
+    "toxicity": [0.1, 0.0],
     "predator": 100,
     "initial_scale": 0.05,
     "generations": 2000,
     "cmap": "coolwarm"
   },
   {
-    "name": "H100_P500-T01_P500-T00_G10_N2000_R005_K005_I005",
+    "name": "H100_P500-T09_P500-T00_G10_N2000_R005_K005_I005",
     "prey": [500, 500],
-    "toxicity": [0.1, 0.0],
+    "toxicity": [0.9, 0.0],
     "predator": 100,
     "initial_scale": 0.05,
     "generations": 2000,
@@ -22,6 +22,15 @@
     "prey": [500, 500],
     "toxicity": [0.9, 0.8],
     "predator": 100,
+    "initial_scale": 0.05,
+    "generations": 2000,
+    "cmap": "coolwarm"
+  },
+  {
+    "name": "H150_P500-T09_P500-T01_P500-T00_G10_N2000_R005_K005_I005",
+    "prey": [500, 500, 500],
+    "toxicity": [0.9, 0.1, 0.0],
+    "predator": 150,
     "initial_scale": 0.05,
     "generations": 2000,
     "cmap": "coolwarm"
@@ -45,18 +54,9 @@
     "cmap": "coolwarm"
   },
   {
-    "name": "H150_P500-T09_P500-T01_P500-T00_G10_N2000_R005_K005_I005",
-    "prey": [500, 500, 500],
-    "toxicity": [0.9, 0.1, 0.0],
-    "predator": 150,
-    "initial_scale": 0.05,
-    "generations": 2000,
-    "cmap": "coolwarm"
-  },
-  {
-    "name": "H200_P500-T09_P500-T06_P500-T03_P500-T00_G10_N2000_R005_K005_I005",
+    "name": "H200_P500-T09_P500-T02_P500-T01_P500-T00_G10_N2000_R005_K005_I005",
     "prey": [500, 500, 500, 500],
-    "toxicity": [0.9, 0.6, 0.3, 0.0],
+    "toxicity": [0.9, 0.2, 0.1, 0.0],
     "predator": 200,
     "initial_scale": 0.05,
     "generations": 2000,
@@ -72,9 +72,9 @@
     "cmap": "coolwarm"
   },
   {
-    "name": "H200_P500-T09_P500-T08_P500-T05_P500-T00_G10_N2000_R005_K005_I005",
+    "name": "H200_P500-T09_P500-T06_P500-T03_P500-T00_G10_N2000_R005_K005_I005",
     "prey": [500, 500, 500, 500],
-    "toxicity": [0.9, 0.8, 0.5, 0.0],
+    "toxicity": [0.9, 0.6, 0.3, 0.0],
     "predator": 200,
     "initial_scale": 0.05,
     "generations": 2000,
@@ -99,9 +99,9 @@
     "cmap": "coolwarm"
   },
   {
-    "name": "H200_P500-T09_P500-T02_P500-T01_P500-T00_G10_N2000_R005_K005_I005",
+    "name": "H200_P500-T09_P500-T08_P500-T05_P500-T00_G10_N2000_R005_K005_I005",
     "prey": [500, 500, 500, 500],
-    "toxicity": [0.9, 0.2, 0.1, 0.0],
+    "toxicity": [0.9, 0.8, 0.5, 0.0],
     "predator": 200,
     "initial_scale": 0.05,
     "generations": 2000,
